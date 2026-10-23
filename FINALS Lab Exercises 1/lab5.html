@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <form id="myForm">
+        <input type="text" id="username" value="Maria">
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+    document.getElementById('myForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        let nameValue = document.getElementById('username').value;
+
+fetch('lab5.php', {
+            method: 'POST',
+            body: JSON.stringify({ name: nameValue })
+        })
+        .then(res => res.text())
+        .then(data => {
+            document.getElementById('result').innerText = data;
+        });
+    });
+    </script>
+
+</body>
+</html>
